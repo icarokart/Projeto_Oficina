@@ -1,7 +1,7 @@
 /*-------------------------------------------------------------------------------
 Nome: tu_Total_Produtos_Estoque
-Data de Criação: 15/09/2022
-Autor: Ícaro Rodrigues
+Data de Criaï¿½ï¿½o: 15/09/2022
+Autor: ï¿½caro Rodrigues
 -------------------------------------------------------------------------------*/
 
 If Exists (Select 1 From Sysobjects Where Id = Object_Id('dbo.[tu_Total_Produtos_Estoque]'))
@@ -18,13 +18,13 @@ Begin
 	Declare
 		@ID_PRODUTO INT,
 		@QTD_ITENS INT,
-		@PREÇO_UN NUMERIC(7,2)
+		@PREï¿½O_UN NUMERIC(7,2)
 
 
 		SELECT @ID_PRODUTO = I.ID_PRODUTO
 		FROM inserted I
 
-
+	---alouu
 
 
      Set NoCount Off;
