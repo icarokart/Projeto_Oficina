@@ -1,3 +1,11 @@
+/*-------------------------------------------------------------------------------
+Nome: Tabelas e relacionamentos
+Data de Criação: 10/09/2022
+Autor: Ícaro Rodrigues
+
+Descrição: Todas as tabelas e relacionamentos (até então) do sistema.
+-------------------------------------------------------------------------------*/
+
 USE TESTE_ICARO
 GO
 

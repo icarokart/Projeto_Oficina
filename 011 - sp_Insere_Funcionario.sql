@@ -1,3 +1,10 @@
+/*-------------------------------------------------------------------------------
+Nome: sp_Insere_Funcionario
+Data de Criação: 22/09/2022
+Autor: Ícaro Rodrigues
+
+Descrição: 
+-------------------------------------------------------------------------------*/
 If Exists (Select 1 From Sysobjects Where Id = Object_Id('dbo.sp_Insere_Funcionario'))
      Drop Procedure dbo.sp_Insere_Funcionario
 Go
@@ -23,11 +30,16 @@ Create Procedure dbo.sp_Insere_Funcionario
 	 @DT_CONTRATACAO DATETIME,
 	 @SALARIO NUMERIC(7,2),
 	 @DT_CADASTRO DATETIME,
-	 @OBS_FUNCIONARIO VARCHAR(500),
-	 @SIT_FUNCIONARIO TINYINT
+	 @OBS_FUNCIONARIO VARCHAR(500)
 ) As
 Begin
      Set NoCount On;
+
+	 DECLARE
+		@ID_PESSOA INT,
+		@SIT_FUNCIONARIO TINYINT
+
+	SET @SIT_FUNCIONARIO = 0 --ENTRA ATIVO POR PADRÃO
      
 	 BEGIN TRANSACTION
 		--inserindo a pessoa
@@ -48,8 +60,26 @@ Begin
 									, @OBSERVACOES
 		END
 
+		SET @ID_PESSOA = (SELECT MAX(ID_PESSOA) FROM PESSOAS)
+
 		BEGIN
-			
+			INSERT FUNCIONARIOS(  [ID_PESSOA]
+								, [REGISTRO_FUNCIONARIO]
+								, [DT_CONTRATACAO]
+								, [SALARIO]
+								, [DT_CADASTRO]
+								, [OBSERVACOES]
+								, [DT_DEMISSAO]
+								, [SIT_FUNCIONARIO])
+			VALUES(
+								  @ID_PESSOA
+								, @REG_FUNCIONARIO
+								, @DT_CONTRATACAO
+								, @SALARIO
+								, GETDATE()
+								, @OBS_FUNCIONARIO
+								, NULL
+								, @SIT_FUNCIONARIO)
 		END
 
 	 COMMIT TRANSACTION
@@ -57,6 +87,3 @@ Begin
      Set NoCount Off;
 End
 Go
-
-
-
